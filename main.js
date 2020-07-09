@@ -2,6 +2,8 @@ const emagiSearch = require('./emagi-search.js')
 const emagify = require('./emagify.js')
 const randomElement = require('./emagi-random.js')
 const symbols = require('./emagi-symbols.js')
+const feelings = require('./emagi-feelings.js')
+const food = require('./emagi-food.js')
 
 // store user input into a variable. Eliminate the index 0 and 1
 const userInput = process.argv.slice(2)
@@ -24,6 +26,7 @@ if (userInput[0] === 'random') {
     console.log(randomElement(symbols))
 }
 
+
 // When there's no input, gives instructions to use the app
 if (userInput[0] === undefined) {
     const message = 
@@ -36,7 +39,22 @@ if (userInput[0] === undefined) {
     console.log(message)
 }
 
+// STRETCH GOAL:  When type 'madlibs'. In the sentence follow it, replace "food" with a random food symbol, replace "emotion" with a random feeling symbol.
+if (userInput[0] === 'madlibs') {
+    let result = []
+    for (const item of userInput) {
+        if (item.includes('food')) {
+            result.push(randomElement(food))
+        } else if (item.includes('emotion')) {
+            result.push(randomElement(feelings))
+        } else {
+            result.push(item)
+        }
+    }
+    console.log(result.join(' '))
+}
 
 
 
 
+     
